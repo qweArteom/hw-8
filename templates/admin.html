@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Адмін-панель: Додати нову страву</h2>
+<form method="POST" action="{{ url_for('admin') }}">
+    {{ form.hidden_tag() }}
+    <p>{{ form.name.label }} {{ form.name(size=32) }}</p>
+    <p>{{ form.description.label }} {{ form.description(rows=3, cols=32) }}</p>
+    <p>{{ form.price.label }} {{ form.price() }}</p>
+    <p>{{ form.submit() }}</p>
+</form>
+
+<h2>Існуючі страви</h2>
+<ul>
+    {% for item in menu_items %}
+    <li>
+        <strong>{{ item.name }} - {{ item.price }} грн</strong><br>
+        <p>{{ item.description }}</p>
+        <a href="{{ url_for('edit_item', id=item.id) }}">Редагувати</a> |
+        <form method="POST" action="{{ url_for('delete_item', id=item.id) }}" style="display:inline;">
+            <button type="submit">Видалити</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

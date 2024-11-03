@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Меню піцерії</h2>
+<ul>
+    {% for item in menu_items %}
+    <li>
+        <h3>{{ item.name }} - {{ item.price }} грн</h3>
+        <p>{{ item.description }}</p>
+    </li>
+    {% else %}
+    <li>Наразі меню порожнє. Завітайте пізніше або додайте страви через панель адміністратора.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
